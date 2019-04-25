@@ -40,14 +40,13 @@ var filterPictures = (arr, keyword) => {
 // display images function
 const displayImages = (array) => {
   let sortedArray = sortByKeyword(array);
-  console.log(sortedArray);
+  console.log('keyword sort',sortedArray);
   sortedArray = sortByHorns(sortedArray);
-  console.log(sortedArray);
+  console.log('horn sort',sortedArray); //
 
  /* sortedArray.forEach((img) => {
 
   })*/
-  //for later lol
   // array.forEach((img) => {
     // $('div.container2').append(`<img src="${img.imgUrl}" class="pictures" />`)
   // })
@@ -95,24 +94,35 @@ const firstLetterCap = (text) => {
 
 
 let sortByKeyword = (arr) => {
-  arr.sort( (a,b) => {
-
-    if(a < b){
-      return -1;
-    }
-    else if(a === b){
-      return 0;
-    }
-    else{
-      return 1;
-    }
+  console.log(arr[2].keyword);
+  arr.sort( (a, b) => {
+    return a.keyword.localeCompare(b.keyword);
   });
+  console.log(arr)
   return arr;
 }
+// let sortByKeyword = (arr) => {
+//   arr.sort( (a,b) => {
+//     let aa = a['keyword'];
+//     let bb = b['keyword'];
+//     if(aa < bb){
+//       return -1;
+//     }
+//     else if(aa == bb){
+//       return 0;
+//     }
+//     else{
+//       return 1;
+//     }
+//   });
+//   return arr;
+// }
+
 let sortByHorns = (arr) => {
-    arr.sort( (a,b) => { 
-      let aa = a['horns'];
-      let bb = b['horns'];
-      return aa - bb;
-    });
+  arr.sort( (a,b) => { 
+    let aa = a['horns'];
+    let bb = b['horns'];
+    return aa - bb;
+  });
+  return arr;
 }
