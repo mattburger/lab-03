@@ -11,11 +11,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     populateKeywords(imageObjects);
     submitHandler(imageObjects);
     showAllHandler(imageObjects);
+
   })
 })
 
 
-// constructor function
+ 
+ // constructor function
 function ImageObject(description, horns, imgUrl, keyword, title){
   this.description = description,
   this.horns = horns, 
@@ -37,10 +39,20 @@ var filterPictures = (arr, keyword) => {
 }
 // display images function
 const displayImages = (array) => {
-  array.forEach((img) => {
-    $('div.container2').append(`<img src="${img.imgUrl}" class="pictures" />`)
-  })
+  let sortedArray = sortByKeyword(array);
+  console.log(sortedArray);
+  sortedArray = sortByHorns(sortedArray);
+  console.log(sortedArray);
+
+ /* sortedArray.forEach((img) => {
+
+  })*/
+  //for later lol
+  // array.forEach((img) => {
+    // $('div.container2').append(`<img src="${img.imgUrl}" class="pictures" />`)
+  // })
 }
+
 
 
 // function to remove all option elements
@@ -80,3 +92,27 @@ var showAllHandler = (array) => {
 const firstLetterCap = (text) => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
+
+
+let sortByKeyword = (arr) => {
+  arr.sort( (a,b) => {
+
+    if(a < b){
+      return -1;
+    }
+    else if(a === b){
+      return 0;
+    }
+    else{
+      return 1;
+    }
+  });
+  return arr;
+}
+let sortByHorns = (arr) => {
+    arr.sort( (a,b) => { 
+      let aa = a['horns'];
+      let bb = b['horns'];
+      return aa - bb;
+    });
+}
