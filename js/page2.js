@@ -1,9 +1,8 @@
 'use strict'
 
-
 document.addEventListener('DOMContentLoaded', ()=> {
 
-  $.get('../data/page-1.json', (data, status) => {
+  $.get('../data/page-2.json', (data, status) => {
     let imageObjects = [];
     data.forEach((imgObj) => {
       imageObjects.push(new ImageObject(imgObj.description, imgObj.horns, imgObj.image_url, imgObj.keyword, imgObj.title))
@@ -12,11 +11,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     populateKeywords(imageObjects);
     submitHandler(imageObjects);
     showAllHandler(imageObjects);
+
   })
 })
 
 
-// constructor function
+ 
+ // constructor function
 function ImageObject(description, horns, imgUrl, keyword, title){
   this.description = description,
   this.horns = horns, 
@@ -38,15 +39,25 @@ var filterPictures = (arr, keyword) => {
 }
 // display images function
 const displayImages = (array) => {
-  array.forEach((img) => {
-    $('div.container').append(`<img src="${img.imgUrl}" class="pictures" />`)
-  })
+  let sortedArray = sortByKeyword(array);
+  console.log(sortedArray);
+  sortedArray = sortByHorns(sortedArray);
+  console.log(sortedArray);
+
+ /* sortedArray.forEach((img) => {
+
+  })*/
+  //for later lol
+  // array.forEach((img) => {
+    // $('div.container2').append(`<img src="${img.imgUrl}" class="pictures" />`)
+  // })
 }
+
 
 
 // function to remove all option elements
 var removeOptions = () => {
-  $('div.container').empty();
+  $('div.container2').empty();
 }
 
 // function to add the filtered keywords
@@ -55,23 +66,23 @@ var populateKeywords = (array) => {
   $.each(array, (i, obj) => {
     if(!keywords.includes(obj.keyword)){
       keywords.push(obj.keyword)
-      $('#keywords').append(`<option value="${obj.keyword}">${firstLetterCap(obj.keyword)}</option>`)
+      $('#keywords2').append(`<option value="${obj.keyword}">${firstLetterCap(obj.keyword)}</option>`)
     }
   })
 }
 
 // submit handler
 var submitHandler = (array) => {
-  $('#filter-form').submit(function(e) {
+  $('#filter-form2').submit(function(e) {
     e.preventDefault();
-    var val = $("#keywords option:selected").val();
+    var val = $("#keywords2 option:selected").val();
     filterPictures(array, val)
   });
 }
 
 // show all handler
 var showAllHandler = (array) => {
-  $('#showAll').submit(function(e) {
+  $('#showAll2').submit(function(e) {
     e.preventDefault();
     removeOptions();
     displayImages(array)
@@ -81,3 +92,27 @@ var showAllHandler = (array) => {
 const firstLetterCap = (text) => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
+
+
+let sortByKeyword = (arr) => {
+  arr.sort( (a,b) => {
+
+    if(a < b){
+      return -1;
+    }
+    else if(a === b){
+      return 0;
+    }
+    else{
+      return 1;
+    }
+  });
+  return arr;
+}
+let sortByHorns = (arr) => {
+    arr.sort( (a,b) => { 
+      let aa = a['horns'];
+      let bb = b['horns'];
+      return aa - bb;
+    });
+}
