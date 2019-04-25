@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/module.css">
+  <title>Pictures</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="404.html">Login</a>
+    </nav>
+  </header>
+  <main>
+      <form id = "filter-form">
+          <label for="filter-selector">Filter for: </label>
+          <select name = "filter-selector" form="filter-form" id="keywords">
+          </select>
+          <input type="submit">
+      </form>
+      <form id = "showAll">
+        <input type="submit" value="Show All">
+      </form>
+    <section>
+      <div class="container"></div>
+    </section>
+  </main>
+  <footer></footer>
+  <script src="js/app.js"></script>
+</body>
+</html>

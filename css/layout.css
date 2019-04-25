@@ -1,0 +1,19 @@
+
+img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: scale-down;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px dotted;
+}
+
+.container {
+  height: 700px;
+
+}
+label{
+  margin: 0 auto;
+  text-align: center;
+}
